@@ -10,7 +10,7 @@
 # Exemplos
 
 ### INSERT na tabela de usuarios
-
+```sql
 INSERT INTO usuarios (nome, email, senha, tipo)
 VALUES(
     'Jumento soares dias ',
@@ -19,6 +19,7 @@ VALUES(
     'admin'
 );
 
+```sql
 INSERT INTO usuarios(nome, email, senha, tipo)
 VALUES(
     'Fulano da Silva',
@@ -36,7 +37,7 @@ VALUES(
     'marreta',
     'editor'
 );
-
+```sql
 # SELECT na tabela de usuários
 
 SELECT * FROM usuarios;
@@ -60,7 +61,7 @@ DELETE FROM usuarios WHERE id = 2;
 
 # INSERT na tabela de noticias 
 
-
+```sql
 INSERT INTO noticias (titulo, texto, resumo, imagem, usuario_id)
 VALUE(
     'Nova versão do VSCODE',
@@ -78,7 +79,7 @@ VALUE(
 
 
 
-
+```sql
 
 INSERT INTO noticias (titulo, texto, resumo, imagem, usuario_id)
 VALUE(
@@ -90,7 +91,7 @@ VALUE(
     4
 );
 
-
+```sql
 INSERT INTO noticias (titulo, texto, resumo, imagem, usuario_id)
 VALUE(
     'Onda de calor',
@@ -113,7 +114,7 @@ VALUE(
 
 -- Especificamos o nome da coluna junto com o nome da tabela 
 SELECT data, titulo, nome FROM noticias;
-
+```sql
 SELECT
     noticias.data,
     noticias.titulo,
