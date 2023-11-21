@@ -17,8 +17,12 @@ if (isset($_POST['inserir'])) {
 	$senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
 
 	inserirUsuario($conexao, $nome, $email, $senha, $tipo);
-}
+
+	//Redirecionado para a página que lista os usuários
+	header("location:usuarios.php")
+;}
 ?>
+
 
 
 <div class="row">
