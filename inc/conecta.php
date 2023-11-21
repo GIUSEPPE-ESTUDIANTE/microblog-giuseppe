@@ -19,8 +19,8 @@ mysqli_set_charset($conexao, "utf8");
 if(!$conexao){
     //PARE a aplicação e mostre uma mensagem de erro 
     die ("Casa caiu pra você". mysqli_connect_error());
-} else {
+}/*  else {
     echo "Beleza, conectado!";
 }
-
+ */
 ?>

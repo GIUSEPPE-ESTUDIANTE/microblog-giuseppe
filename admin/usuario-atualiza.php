@@ -1,7 +1,15 @@
-<?php 
+<?php //usuario-atualiza.php
+require_once "../inc/funcoes-usuarios.php";
 require_once "../inc/cabecalho-admin.php";
+
+//Pegando o valor do parãmetro id vindo da URL
+$id = $_GET['id'];
+
+//Chamando a função e guardando o retorno dela
+ $dados = lerUmUsuarios($conexao, $id);
 ?>
 
+<pre><?= var_dump($dados)?></pre>
 
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">

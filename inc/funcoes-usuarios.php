@@ -24,3 +24,14 @@ $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 // Retornamos o resultado da query transformado em array associativo
 return mysqli_fetch_all($resultado, MYSQLI_ASSOC); 
  }
+
+ function lerUmUsuarios($conexao, $id){
+    // Montamos o sql contendo id do usuario que queremos carregar
+    $sql = "SELECT * FROM usuarios WHERE id = $id";
+
+    //Executamos e guardamos o resultado da consulta
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    // Retornando o resultado transformado em UM array com os dados
+    return mysqli_fetch_assoc($resultado);  
+ }
