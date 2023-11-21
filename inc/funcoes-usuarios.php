@@ -35,3 +35,16 @@ return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
     // Retornando o resultado transformado em UM array com os dados
     return mysqli_fetch_assoc($resultado);  
  }
+
+
+
+
+ function atualizarUsuario( $conexao, $id, $nome, $email, $senha, $tipo ){
+        $sql = "UPDATE usuario SET 
+        nome = '$nome',
+        email = '$email',
+        senha =  '$senha',
+        tipo = '$tipo'
+        WHERE id = $id";//NÃO ESQUEÇA DESSA BAGALÇA!! PRERIGO!
+        mysqli_query($conexao, $sql)or die(mysqli_error($conexao));
+ }
