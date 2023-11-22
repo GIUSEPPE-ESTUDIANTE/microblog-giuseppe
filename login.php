@@ -1,6 +1,20 @@
 <?php
 require "inc/cabecalho.php"; 
+require "inc/funcoes-sessao.php";
+require "inc/funcoes-usuarios.php";
+
+if (isset($_POST['entrar'])){
+
+	/* Verificando se os campos estão vazios */
+	if( empty($_POST['email']) || empty($_POST['senha']) ){
+		header("location:login.php?campos_obrigatorios");
+		exit;
+	}
+
+}
 ?>
+
+
 
 <div class="row">
     <div class="bg-white rounded shadow col-12 my-1 py-4">
