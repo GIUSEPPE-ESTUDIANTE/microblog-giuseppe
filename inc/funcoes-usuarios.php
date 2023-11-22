@@ -48,3 +48,10 @@ return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
         WHERE id = $id";//NÃO ESQUEÇA DESSA BAGALÇA!! PRERIGO!
         mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
  }
+
+
+ function excluirUsuario( $conexao, $id){
+   $sql = "DELETE FROM usuarios WHERE id = $id";
+
+   mysqli_query($conexao, $sql) or die(mysqli_errno($conexao));
+ }
