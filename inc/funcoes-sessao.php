@@ -52,3 +52,14 @@ function buscaUsuario($conexao, $email){
 $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
     return mysqli_fetch_assoc($resultado);
 }
+
+
+
+function verificaTipo(){
+    /* Se o tipo de usuario logado 
+    na sessão NÃO admin */
+    if ($_SESSION['tipo'] != 'admin'){
+        //Então redirecione para:
+        header("location:nao-autorizado.php");
+    exit;    }
+}
