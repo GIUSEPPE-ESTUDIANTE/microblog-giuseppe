@@ -54,20 +54,26 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario); {
 
 				<tbody>
 
-				<?php foreach ($listaDeNoticias as $noticias) { ?>
+				<?php foreach ($listaDeNoticias as $noticia) { ?>
 					<tr>
-						<td> <?=$noticias ['titulo']?> </td>
-						<td> <?=$noticias['data']?> </td>
+						<td> <?=$noticia ['titulo']?> </td>
+						<td> <?=$noticia['data']?> </td>
 
 						<?php if($tipoUsuario == "admin"){ ?>
-						<td> <?=$noticias ['autor']?> </td>
+						<td> <?=$noticia ['autor']?> </td>
 					<?php } ?>
-						<td class="text-center">
-							<a class="btn btn-warning" href="noticia-atualiza.php">
+					<td class="text-center">
+
+					
+						<a class="text-center">
+ 				<a class="btn btn-warning"
+ href="noticia-atualiza.php?id=<?=$noticia['id']?>">
+
 								<i class="bi bi-pencil"></i> Atualizar
 							</a>
 
-							<a class="btn btn-danger excluir" href="noticia-exclui.php">
+							<a class="btn btn-danger excluir" 
+href="noticia-exclui.php?id=<?=$noticia['id']?>">
 								<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>
