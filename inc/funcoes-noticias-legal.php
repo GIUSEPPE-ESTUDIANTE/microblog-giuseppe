@@ -58,12 +58,31 @@ function upload($arquivo)
 
 
 /* Usada em noticias.php */
-function lerNoticias($conexao)
+function lerNoticias($conexao, $idUsuario, $tipoUsuario)
 {
+    /* Verificando se o tipo de usuário é admin */
+    if ( $tipoUsuario == 'admin') {
+        //SQL DP admin: pode carregar/ver TUDO de todos
+        $sql = "SELECT
+                    noticias.id,
+                    noticias.titulo,
+                    noticias.data,
+                    usuarios.nome AS autor
+                    FROM noticias JOIN usuarios
+                    ON noticias.usuario_id = usuarios.id
+                    ORDER BY DATA DESC";
+                
+    } else {
+        /* SQL do editor: pode carregar/ver TUDO DELE SOMENTE */
+        $sql = "SELECT id, titulo, data FROM noticias
+                WHERE usuario_id = $idUsuario ORDER BY data DESC";
+    }
+    
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error
+    ($conexao));
 
-
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
-
+    // Retornando o resultado convertido em uma matriz/array
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 } // fim lerNoticias
 
 
