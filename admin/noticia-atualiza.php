@@ -21,16 +21,16 @@ require_once "../inc/cabecalho-admin.php";
             Atualizar dados da notícia
         </h2>
 
-        <form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
+        <form enctype="multipart/form-data" class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
 
             <div class="mb-3">
                 <label class="form-label" for="titulo">Título:</label>
-                <input class="form-control" required type="text" id="titulo" name="titulo">
+                <input value="<?=$noticia['titulo']?>" class="form-control" required type="text" id="titulo" name="titulo">
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="texto">Texto:</label>
-                <textarea class="form-control" required name="texto" id="texto" cols="50" rows="6"></textarea>
+                <textarea class="form-control" required name="texto" id="texto" cols="50" rows="6"><?=$noticia['texto']?></textarea>
             </div>
 
             <div class="mb-3">
@@ -42,7 +42,7 @@ require_once "../inc/cabecalho-admin.php";
             <div class="mb-3">
                 <label for="imagem-existente" class="form-label">Imagem da notícia:</label>
                 <!-- campo somente leitura, meramente informativo -->
-                <input class="form-control" type="text" id="imagem-existente" name="imagem-existente" readonly>
+                <input value="<?=$noticia['imagem']?>" class="form-control" type="text" id="imagem-existente" name="imagem-existente" readonly>
             </div>
 
             <div class="mb-3">
