@@ -61,7 +61,7 @@ function upload($arquivo)
 function lerNoticias($conexao, $idUsuario, $tipoUsuario)
 {
     /* Verificando se o tipo de usuário é admin */
-    if ( $tipoUsuario == 'admin') {
+    if ($tipoUsuario == 'admin') {
         //SQL DP admin: pode carregar/ver TUDO de todos
         $sql = "SELECT
                     noticias.id,
@@ -71,15 +71,13 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario)
                     FROM noticias JOIN usuarios
                     ON noticias.usuario_id = usuarios.id
                     ORDER BY DATA DESC";
-                
     } else {
         /* SQL do editor: pode carregar/ver TUDO DELE SOMENTE */
         $sql = "SELECT id, titulo, data FROM noticias
                 WHERE usuario_id = $idUsuario ORDER BY data DESC";
     }
-    
-    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error
-    ($conexao));
+
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
     // Retornando o resultado convertido em uma matriz/array
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
@@ -94,52 +92,79 @@ function formataData()
 
 /* Usada em noticia-atualiza.php */
 function lerUmaNoticia(
-    $conexao, $idNoticia, $idUsuario, $tipoUsuario){
+    $conexao,
+    $idNoticia,
+    $idUsuario,
+    $tipoUsuario
+) {
 
 
-    if($tipoUsuario == "admin"){
+    if ($tipoUsuario == "admin") {
         $sql = "SELECT * FROM noticias WHERE id = $idNoticia";
     } else {
         /* Pode carregar dados de qualquer noticia
         DELE [EDITOR] APENAS */
-        $sql ="SELECT * FROM noticias
+        $sql = "SELECT * FROM noticias
         WHERE id = $idNoticia
         AND usuario_id = $idUsuario";
-        
-    }
+    } {
 
 
+        // Executando o comando SQL e guardando o resultado
+        $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
-
-    {
-
-
-// Executando o comando SQL e guardando o resultado
-  $resultado = mysqli_query($conexao, $sql) or die(mysqli_error
-  ($conexao));
-
-  //Retornando UM ÚNICO array com os dados da noticia
-  return mysqli_fetch_assoc($resultado);
-
-} // fim lerUmaNoticia
+        //Retornando UM ÚNICO array com os dados da noticia
+        return mysqli_fetch_assoc($resultado);
+    } // fim lerUmaNoticia
 }
 
 /* Usada em noticia-atualiza.php */
-function atualizarNoticia($conexao)
-{
+function atualizarNoticia(
+    $conexao,
+    $titulo,
+    $texto,
+    $resumo,
+    $imagem,
+    $idNoticia,
+    $idUsuario,
+    $tipoUsuario
+) {
+
+    if ($tipoUsuario == 'admin') {
+        // SQL do admin: pode atualizar QUALQUER noticia
+        $sql = "UPDATE noticias SET
+                    titulo = '$titulo', texto = '$texto',
+                    resumo = '$resumo', imagem = '$imagem'
+                WHERE id = $idNoticia";
+    } else {
+        // SQL do editor: pode atualizar SOMENTE AS DELE
+
+        $sql = "UPDATE noticias SET
+                    titulo = '$titulo', texto = '$texto',
+                    resumo = '$resumo', imagem = '$imagem'
+                WHERE id = $idNoticia
+                AND usuario_id = $idUsuario";
+    }
 
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
-
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 } // fim atualizarNoticia
 
 
 /* Usada em noticia-exclui.php */
-function excluirNoticia($conexao)
+function excluirNoticia($conexao, $idnoticia, $idUsuario, $tipoUsuario)
 {
+if($tipoUsuario == 'admin') {
+    $sql = "DELETE FROM noticias
+            WHERE  id = $idnoticia";
+} else { 
+    $sql = "DELETE FROM noticias
+     WHERE  id = $idnoticia
+     AND usuario_id = $idUsuario";
+    
+}
 
-
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim excluirNoticia
 

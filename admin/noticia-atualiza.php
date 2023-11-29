@@ -37,8 +37,16 @@ upload($_FILES['imagem']);
 atualizarNoticia($conexao, $titulo, $texto, $resumo,
 $imagem, $idNoticia, $idUsuario, $tipoUsuario);
 
+header("location:noticias.php");
+
  }// fim if isset
+
+ 
+ 
+
 ?>
+
+
 
 
 <div class="row">
