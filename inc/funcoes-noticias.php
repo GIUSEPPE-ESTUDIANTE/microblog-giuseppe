@@ -85,8 +85,10 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario)
 
 
 /* Usada em noticias.php e páginas da área pública */
-function formataData()
+function formataData($data)
 {
+     $dataFormatada = date("d/m/y H:i:s", strtotime($data));
+     return $dataFormatada;
 } // fim formataData
 
 
@@ -213,9 +215,14 @@ function lerDetalhes($conexao, $id){
 
 
 /* Usada em resultados.php */
-function busca($conexao)
-{
+function busca($conexao, $termoDigitado){//"AÇÃO"
+    $sql = "SELECT * FROM noticias
+    WHERE 
+            titulo  LIKE '%$termoDigitado%' OR  
+            resumo  LIKE '%$termoDigitado%' OR 
+            texto LIKE '%$termoDigitado%' 
+            ORDER BY data DESC";
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
-
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 } // fim busca
