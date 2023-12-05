@@ -1,6 +1,6 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
-require_once "../inc/funcoes-noticias-legal.php";
+require_once "../inc/funcoes-noticias.php";
 
 if(isset($_POST['inserir'])){
 	$titulo = $_POST['titulo'];

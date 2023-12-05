@@ -1,18 +1,19 @@
 <?php
+require "../inc/funcoes-noticias.php";
 require "../inc/funcoes-sessao.php";
-require "../inc/funcoes-noticias-legal.php";
-
 verificaAcesso();
 
-$idNoticia = $_GET ['id'];
+// PEGANDO O ID DA NOTICIA (DA URL) QUE VAI EXCLUIR 
+$idNoticia = $_GET['id'];
 
+// PEGANDO TIPO DO USUARIO (DA SESSION)
 $tipoUsuario = $_SESSION['tipo'];
 
-$idUsuario = $_SESSION ['id'];
+// PEGANDO ID DO USUARIO (DA SESSION)
+$idUsuario = $_SESSION['id'];
 
-excluirNoticia(
-    $conexao, $idNoticia, $idUsuario , $tipoUsuario
-);
+// Executar a função
+excluirNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario);
 
-
-    header("location:noticias.php");
+// Redirecionar para noticias.php
+header("location:noticias.php");

@@ -1,5 +1,5 @@
 <?php
-require_once "../inc/funcoes-noticias-legal.php.";
+require_once "../inc/funcoes-noticias.php.";
 require_once "../inc/cabecalho-admin.php";
 
  /* Capturando o id da noticia que foi transmitido via URL  */
