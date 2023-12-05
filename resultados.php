@@ -6,7 +6,9 @@ require "inc/cabecalho.php";
 $termoDigitado = $_GET['busca'];
 
 // Executando a busca no banco de dados
-$resultadoDaBusca = busca($conexao, $termoDigitado);
+//$resultadoDaBusca = busca($conexao, $termoDigitado);
+
+$termoDigitado = mysqli_real_escape_string( $conexao, $_GET['busca']);
 
 
 ?>

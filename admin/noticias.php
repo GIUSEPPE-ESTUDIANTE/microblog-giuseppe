@@ -2,6 +2,8 @@
 require_once "../inc/funcoes-noticias.php";
 require_once "../inc/cabecalho-admin.php";
 
+
+
 // id do usuário logado
 $idUsuario = $_SESSION['id'];
 
